@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum AlarmType { Alram, NickName }
+public enum AlarmType { Alarm, NickName }
 
 public class Alarm : MonoBehaviour
 {
