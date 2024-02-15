@@ -50,8 +50,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
     //해당 로비에 방 목록의 변경 사항이 있으면 호출(추가, 삭제, 참가)되는 콜백함수
     public override void OnRoomListUpdate(List<RoomInfo> roomList) {
         //1. 룸을 삭제
+        RemoveRoom();
         //2. 룸을 업데이트
+        UpdateRoom(roomList);
         //3. 룸을 생성
+        CreateRoomObject();
     }
 
     public void RemoveRoom() {
@@ -73,6 +76,18 @@ public class RoomManager : MonoBehaviourPunCallbacks
             } else {
                 roomDictionary[roomList[i].Name] = roomList[i];
             }
+        }
+    }
+
+    public void CreateRoomObject() {
+        //roomDictionary에 여러 개의 Values 값이 들어있다면 roomInfo에 넣어줍니다.
+        foreach (RoomInfo roomInfo in roomDictionary.Values) {
+            //create room object
+            GameObject room = Instantiate(Resources.Load<GameObject>("Room"));
+            room.transform.SetParent(roomParentTransform);
+            
+            //룸에 대한 정보 입력
+            room.GetComponent<Information>().RoomData(roomInfo.Name, roomInfo.PlayerCount, roomInfo.MaxPlayers);
         }
     }
 }
