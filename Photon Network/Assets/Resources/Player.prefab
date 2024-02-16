@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6988969997357942762}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4591470148023645823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f95144c17ae784b980c9b6ada12067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseX: 0
+  rotateSpeed: 15
+  speed: 25
+  direction: {x: 0, y: 0, z: 0}
+  temporaryCamera: {fileID: 7954504642219015986}
 --- !u!1 &7200931902414079080
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,18 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Realtime;
+using Photon.Pun;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Awake() {
+        CreatePlayer();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void CreatePlayer() {
+        PhotonNetwork.Instantiate("Player", RandomPosition(5), Quaternion.identity);
+    }
+
+    public Vector3 RandomPosition(float distance) {
+        //(1,1,1)의 범위 내에서 랜덤으로 위치 설정
+        Vector3 direction = Random.insideUnitSphere;
+        direction.Normalize();
+        direction *= distance;
+        direction.y = 0;
+
+        return direction;
+    }
+
+    public void ExitGame() {
+        PhotonNetwork.LeaveRoom();
+    }
+    //방을 나갈 때 호출
+    public override void OnLeftRoom() {
+        PhotonNetwork.LoadLevel("Photon Lobby");
+    }
+
+    //방장이 나갈 시, 호출되는 함수 마스터 권한을 다른 클라이언트한테 넘김
+    public override void OnMasterClientSwitched(Player newMasterClient) {
+        PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[0]);
     }
 }
