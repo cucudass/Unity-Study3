@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Instantiate("Player", RandomPosition(5), Quaternion.identity);
     }
 
-    public Vector3 RandomPosition(float distance) {
+    public Vector3 RandomPosition(float distance) {//플레이어 생성 위치
         //(1,1,1)의 범위 내에서 랜덤으로 위치 설정
         Vector3 direction = Random.insideUnitSphere;
         direction.Normalize();
         direction *= distance;
-        direction.y = 0;
+        direction.y = 1;
 
         return direction;
     }
