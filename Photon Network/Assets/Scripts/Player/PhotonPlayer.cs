@@ -30,11 +30,6 @@ public class PhotonPlayer : MonoBehaviourPun
         //자기 자신만 움직이게 한다.
         if (!photonView.IsMine) return;
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            if (PhotonNetwork.IsMasterClient)
-                Debug.Log("MaterClient");
-        }
-
         Movement();
         Rotation();
     }

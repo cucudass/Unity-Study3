@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] float cameraRotationLimit = 60.0f;
     [SerializeField] float currentRotationX;
-    [SerializeField] float sensitivity = 5.0f;
+    [SerializeField] float sensitivity = 400.0f;
     [SerializeField] float scrollSpeed = 100.0f;
 
     void Start()
@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
 
         float cameraRotationX = xRotation * sensitivity;
 
-        currentRotationX -= cameraRotationX; //마우스가 가는 방향
+        currentRotationX -= cameraRotationX * Time.deltaTime; //마우스가 가는 방향
         currentRotationX = Mathf.Clamp(currentRotationX, -cameraRotationLimit, cameraRotationLimit);//회전 범위
 
         transform.localEulerAngles = new Vector3(currentRotationX, 0, 0);
