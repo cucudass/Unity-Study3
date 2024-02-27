@@ -4,15 +4,24 @@ using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    [SerializeField] Text timerText;
     [SerializeField] GameObject nickNamePanel;
     [SerializeField] TMP_InputField nickNameInputField;
-    
+
+    [SerializeField] int playerCount = 1;
+
+    [SerializeField] float timer = 180;
+    private int minute;
+    private int second;
+
     private void Awake() {
         CreatePlayer();
         CheckNickName();
+        checkPlayer();
     }
 
     private void CreatePlayer() {
@@ -45,5 +54,43 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = nickName;
 
         nickNamePanel.SetActive(string.IsNullOrEmpty(nickName) ? true : false);
+    }
+
+    public void checkPlayer() {
+        if(PhotonNetwork.PlayerList.Length >= playerCount) {
+            photonView.RPC("RemoteTimer", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    public void RemoteTimer() {
+        StartCoroutine(StartTimer());
+    }
+
+    /*°­»ç´Ô ÄÚµå
+    IEnumerator StartTimer() {
+        while (true) {
+            timer -= Time.deltaTime;
+            minute = (int)timer / 60;
+            second = (int)timer % 60;
+
+            timerText.text = minute.ToString("00") + " : " + second.ToString("00");
+
+            yield return null;
+
+            if (timer <= 0) yield break;
+        }
+    }
+    */
+    IEnumerator StartTimer() {
+        while(timer >= 0) {
+            minute = (int)timer / 60;
+            second = (int)timer % 60;
+
+            timerText.text = minute.ToString("00") + " : " + second.ToString("00");
+            timer -= 1;
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

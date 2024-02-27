@@ -637,8 +637,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42866c3c44cb9cd4ab141dac07380e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 802488508}
   nickNamePanel: {fileID: 277679375}
   nickNameInputField: {fileID: 564241264}
+  playerCount: 3
+  timer: 70
 --- !u!1 &263077833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4212263691463966, guid: e07fc9f29d78ca94a9e286395af04b0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.222
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 4212263691463966, guid: e07fc9f29d78ca94a9e286395af04b0e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2591,7 +2594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4142529514100232, guid: fc1044692b749584ea994677f766e007, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 4142529514100232, guid: fc1044692b749584ea994677f766e007, type: 3}
       propertyPath: m_LocalPosition.z

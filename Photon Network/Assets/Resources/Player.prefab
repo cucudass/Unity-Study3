@@ -533,7 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   mouseX: 0
-  rotateSpeed: 1200
+  rotateSpeed: 1000
   speed: 25
   direction: {x: 0, y: 0, z: 0}
   temporaryCamera: {fileID: 7954504642219015986}

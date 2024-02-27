@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum AlarmType { Alarm, PasuePanel }
+public enum AlarmType { Alarm, PausePanel }
 
 public class Alarm : MonoBehaviourPunCallbacks
 {
