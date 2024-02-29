@@ -6,34 +6,43 @@ public class Player : MonoBehaviour
 {
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigidbody2D;
 
     [SerializeField] Vector2 direction;
-    [SerializeField] float speed = 5.0f;
+    [SerializeField] float speed = 500.0f;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        KeyBoard();
+    }
+
+    private void FixedUpdate() {
         Move();
+        Reverse();
+    }
+
+    void KeyBoard() {
+        direction.x = Input.GetAxis("Horizontal");
+        direction.y = Input.GetAxis("Vertical");
     }
 
     void Move() {
-        direction.x = Input.GetAxis("Horizontal");
-        direction.y = Input.GetAxis("Vertical");
-
-        spriteRenderer.flipX = direction.x > 0;
-
-        if(direction.x != 0 || direction.y != 0)
-            animator.SetBool("Run", true);
-        else
+        if(rigidbody2D.velocity == Vector2.zero) {
             animator.SetBool("Run", false);
+        } else {
+            animator.SetBool("Run", true);
+        }
+        rigidbody2D.velocity = new Vector3(direction.x, direction.y, 0) * speed * Time.fixedDeltaTime;
+    }
 
-        Vector2 movement = new Vector2(direction.x, direction.y);
-
-        transform.Translate(movement * speed * Time.deltaTime);
+    void Reverse() {
+        spriteRenderer.flipX = direction.x > 0;
     }
 }
