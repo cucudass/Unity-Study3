@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidbody2D;
+    private FlashMaterial flashMaterial;
 
     [SerializeField] Vector2 direction;
     [SerializeField] float speed = 500.0f;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        flashMaterial = GetComponent<FlashMaterial>();
     }
 
     void Update()
@@ -44,5 +46,11 @@ public class Player : MonoBehaviour
 
     void Reverse() {
         spriteRenderer.flipX = direction.x > 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.CompareTag("Player")) {
+            StartCoroutine(flashMaterial.HitEffect(0.25f));
+        }
     }
 }
